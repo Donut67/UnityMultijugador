@@ -5,31 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/MainMenu.unity
-    guid: f7663102eefeadb429fb7d964fed4f2d
-  - enabled: 0
-    path: Assets/Scenes/LANLevel.unity
-    guid: 914f04041ef885a45a6233f6a2ae65cc
-  - enabled: 0
-    path: Assets/Scenes/PvPScene.unity
-    guid: 3ca9840dfd1f415419d88f65f4caae29
   - enabled: 1
-    path: Assets/Scenes/ClientServidor/ClientConnect.unity
-    guid: 8a8943d166651494fb7dd00215d53ef8
+    path: Assets/Scenes/ClientConnect.unity
+    guid: ebf0e0593baa71a4ba15e1a1a5f65960
   - enabled: 1
-    path: Assets/Scenes/ClientServidor/Client.unity
-    guid: c9d599e171c48e34b8c5aaed56d92572
-  - enabled: 1
-    path: Assets/Scenes/EndOfGame.unity
-    guid: fb7edfd156a57e947b6245ee10dfa652
-  - enabled: 1
-    path: Assets/Scenes/YouLose.unity
-    guid: 5a03524054692f244817ed37f0519a87
+    path: Assets/Scenes/Client.unity
+    guid: 2a7e0f763d2e2ba4392c25638fd5f0af
   - enabled: 0
-    path: Assets/Scenes/ClientServidor/ServerConnect.unity
-    guid: 8e847ea2ddde7524f8086962ade328b9
+    path: Assets/Scenes/ServerConnect.unity
+    guid: b1f9f23c12fabf14c82db1859dcacd27
   - enabled: 0
-    path: Assets/Scenes/ClientServidor/Server.unity
-    guid: 54a4b2b905ef649409dcfbdc1faf46cc
+    path: Assets/Scenes/Server.unity
+    guid: 9ef03d669e7a32e4cbec6aeba882a0ff
   m_configObjects: {}
