@@ -5,23 +5,23 @@ TagManager:
   serializedVersion: 2
   tags:
   - Chat
-  - Handler
+  - Stones
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Punxes
+  - Ground
+  - groundDetector
+  - button
+  - P1Cam
+  - P2Cam
+  - Player2
+  - Projectile
+  - cameraConfiner
   - 
   - 
   - 
