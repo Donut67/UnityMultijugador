@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -256,6 +257,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      EnterDoorSpriteSheet_3: 8402121137425656919
+      EnterDoorSpriteSheet_5: 40866196109766288
+      EnterDoorSpriteSheet_0: -4937603433679271887
+      EnterDoorSpriteSheet_4: 4654842096661235227
+      EnterDoorSpriteSheet_1: -8780838730933798539
+      EnterDoorSpriteSheet_2: -7557585645590335023
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
