@@ -7,6 +7,7 @@ public class ServerHandler : MonoBehaviour
 {
     public bool test = false;
     private NetworkHelper networkHelper;
+    private int[] seleccions = {-1, -1, -1, -1};
 
     private void Start()
     {
@@ -37,6 +38,13 @@ public class ServerHandler : MonoBehaviour
 
     private void ClientConnected(int id)
     {
+        SendToClient(id, "JUGADOR|" + id.ToString());
+        GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("P" + id + " connected");
+        string send = "SELECT|";
+        for(int i = 0; i < 4; i++) {
+            send += seleccions[i].ToString() + "|";
+        }
+        SendToClient(id, send);
     }
 
     private void ClientDisconnected(int arg0)
@@ -46,11 +54,38 @@ public class ServerHandler : MonoBehaviour
     private void ReceiveMessage(string message, int from)
     {
         // Do things here
+        string[] resultat = message.Split("|");
+
+        if (resultat[0] == "SELECT") {
+            int qui  = from - 1;
+            int quin = Int32.Parse(resultat[1]);
+            int pos = -1;
+
+            for(int i = 0; i < 4; i++) {
+                if(seleccions[i] == qui) {
+                    pos = i;
+                    break;
+                }
+            }
+
+            if(seleccions[quin] == -1) {
+                if(pos != -1) seleccions[pos] = -1;
+                seleccions[quin] = qui;
+            }
+
+            string send = "SELECT";
+            for(int i = 0; i < 4; i++) {
+                send += "|" + seleccions[i].ToString();
+            }
+            GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(send);
+            SendToAll(send);
+        }
+
         // Example: Print message on chat
-        GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(from + " -> " + message);
+        // GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(from + " -> " + message);
 
         // Example: relay all messages
-        SendToAllExcept(from + " -> " + message, from);
+        // SendToAllExcept(from + " -> " + message, from);
     }
 
     public void SendToClient(int id, string message)
@@ -67,5 +102,4 @@ public class ServerHandler : MonoBehaviour
     {
         networkHelper.SendToAll(message);
     }
-
 }

@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharacterSelection : MonoBehaviour
 {
     public List<int> llista;
     public List<GameObject> llistaButton;
     public int seleccio;
+    public int player;
+
+    private ClientHandler ch = null;
     
     // Start is called before the first frame update
     void Start() {
@@ -19,10 +23,32 @@ public class CharacterSelection : MonoBehaviour
         seleccio = -1;
     }
 
+    private void Awake()
+    {
+        ch = GameObject.FindWithTag("Handler").GetComponent<ClientHandler>();
+    }
+
     // Update is called once per frame
-    void Update() {
-        for(int i = 0; i < llistaButton.Count; i++) {
-            // llistaButton[i].GetComponent<SelectionBox>().selected;
-        }
+    // void Update() {
+    //     for(int i = 0; i < llistaButton.Count; i++) {
+    //         // llistaButton[i].GetComponent<SelectionBox>().selected;
+    //     }
+    // }
+
+    public void SetCurrentSelection(int pos) {
+        ch.SendToServer("SELECT|" + pos);
+        GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = "SELECT|" + player + "|" + pos;
+    }
+
+    public void SelectBox(int i, int j) {
+        if(i == player) seleccio = j;
+        llistaButton[j].GetComponent<SelectionBox>().Select(i);
+    }
+    public void DisSelectBox(int i) {
+        llistaButton[i].GetComponent<SelectionBox>().DisSelect();
+    }
+
+    void SetPlayer(int i) {
+        player = i;
     }
 }

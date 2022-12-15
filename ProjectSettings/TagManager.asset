@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Chat
   - Handler
+  - Jugador
+  - Selector
   layers:
   - Default
   - TransparentFX
