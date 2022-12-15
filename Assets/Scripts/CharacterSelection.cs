@@ -28,13 +28,6 @@ public class CharacterSelection : MonoBehaviour
         ch = GameObject.FindWithTag("Handler").GetComponent<ClientHandler>();
     }
 
-    // Update is called once per frame
-    // void Update() {
-    //     for(int i = 0; i < llistaButton.Count; i++) {
-    //         // llistaButton[i].GetComponent<SelectionBox>().selected;
-    //     }
-    // }
-
     public void SetCurrentSelection(int pos) {
         ch.SendToServer("SELECT|" + pos);
         GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = "SELECT|" + player + "|" + pos;

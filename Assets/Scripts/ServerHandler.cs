@@ -80,12 +80,6 @@ public class ServerHandler : MonoBehaviour
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(send);
             SendToAll(send);
         }
-
-        // Example: Print message on chat
-        // GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(from + " -> " + message);
-
-        // Example: relay all messages
-        // SendToAllExcept(from + " -> " + message, from);
     }
 
     public void SendToClient(int id, string message)
