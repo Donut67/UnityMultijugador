@@ -10,6 +10,7 @@ public class CharacterSelection : MonoBehaviour
     public List<GameObject> llistaButton;
     public int seleccio;
     public int player;
+    public bool ready;
 
     private ClientHandler ch = null;
     
@@ -20,6 +21,7 @@ public class CharacterSelection : MonoBehaviour
             llistaButton.Insert(i, gameObject.transform.GetChild(i).gameObject);
         }
 
+        ready = false;
         seleccio = -1;
     }
 
@@ -39,6 +41,11 @@ public class CharacterSelection : MonoBehaviour
     }
     public void DisSelectBox(int i) {
         llistaButton[i].GetComponent<SelectionBox>().DisSelect();
+    }
+
+    public void Ready() {
+        if(!ready) ch.SendToServer("LLEST");
+        ready = true;
     }
 
     void SetPlayer(int i) {
