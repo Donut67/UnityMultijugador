@@ -8,6 +8,7 @@ public class ServerHandler : MonoBehaviour
     public bool test = false;
     private NetworkHelper networkHelper;
     private int[] seleccions = {-1, -1, -1, -1};
+    private List<bool> ready = new List<bool>();
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class ServerHandler : MonoBehaviour
 
     private void ClientConnected(int id)
     {
+        ready.Insert(id, false);
         SendToClient(id, "JUGADOR|" + id.ToString());
         GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("P" + id + " connected");
         string send = "SELECT|";
@@ -79,6 +81,16 @@ public class ServerHandler : MonoBehaviour
             }
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(send);
             SendToAll(send);
+        }else if(message == "LLEST") {
+            ready[from] = true;
+            bool tots = true;
+            foreach(bool pReady in ready){
+                if(!pReady) {
+                    tots = false;
+                    break;
+                }
+            }
+            if(tots) SendToAll("LLEST");
         }
     }
 

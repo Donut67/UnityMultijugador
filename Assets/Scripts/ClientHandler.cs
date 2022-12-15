@@ -39,13 +39,17 @@ public class ClientHandler : MonoBehaviour
         if(resultat[0] == "JUGADOR") {
             jugador = Int32.Parse(resultat[1]);
             GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = "Jugador: P" + resultat[1];
-        } else if (resultat[0] == "SELECT") {
+        }
+        else if(resultat[0] == "SELECT") {
             CharacterSelection cs = GameObject.FindWithTag("Selector").GetComponent<CharacterSelection>();
             for(int i = 0; i < 4; i++) {
                 int qui = Int32.Parse(resultat[1 + i]);
                 if(qui == -1) cs.DisSelectBox(i);
                 else cs.SelectBox(qui, i);
             }
+        }
+        else if(message == "LLEST"){
+            GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = message;
         }
         
         // Example: Print message on chat
