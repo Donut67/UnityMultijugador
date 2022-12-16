@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8411368213497948749}
   - component: {fileID: 4781859238366831480}
   - component: {fileID: 3487238289907868317}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Jugador
   m_TagString: Jugador
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 254906200822780706}
   - component: {fileID: 3647882028674199716}
   - component: {fileID: 8840666040422680987}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2376778273912464466}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8537339781573604878}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2312993241328439432}
   - component: {fileID: 3395860643198639559}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Jugador 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
