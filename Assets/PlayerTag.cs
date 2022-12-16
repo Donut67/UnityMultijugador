@@ -6,21 +6,22 @@ using TMPro;
 public class PlayerTag : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private Transform tag;
+    [SerializeField] private GameObject tag;
 
     public int id = -1;
     // Start is called before the first frame update
     void Awake() {
-        // tag.GetComponent<TextMeshProUGUI>().text = "P" + id;
+        tag.GetComponent<TextMeshPro>().text = "P" + id;
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-        tag.position = player.position + new Vector3(0.0f, 2.5f, 0.0f);
+        tag.gameObject.transform.position = player.position + new Vector3(0.0f, 2.5f, 0.0f);
+        SetPlayerId(id);
     }
 
     public void SetPlayerId(int value) {
         id = value;
-        tag.GetComponent<TextMeshProUGUI>().text = "P" + id;
+        tag.gameObject.GetComponent<TextMeshPro>().text = "P" + id;
     }
 }

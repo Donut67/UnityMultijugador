@@ -60,7 +60,7 @@ public class CameraTracking : MonoBehaviour{
         // GetComponent<Camera>().orthographicSize = maxDistance;
         gameObject.transform.position = Vector3.Lerp(
             gameObject.transform.position,
-            new Vector3(resultant.x /playerList.Count, resultant.y /playerList.Count, -maxDistance / 4),
+            new Vector3(resultant.x /playerList.Count, resultant.y /playerList.Count, -(maxDistance / 4 + 5)),
             Time.deltaTime * 3
         );
     }

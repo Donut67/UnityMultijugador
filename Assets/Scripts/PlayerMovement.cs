@@ -21,9 +21,12 @@ public class PlayerMovement : MonoBehaviour {
 		if(!simulated) {
 			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 			animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-			if (Input.GetButtonDown("Vertical")) {
+			if (Input.GetButtonDown("Jump")) {
 				jump = true;
 				animator.SetBool("IsJumping", true);
+			}
+			if(Input.GetButtonDown("Ability")) {
+
 			}
 		} 
 		// else {
