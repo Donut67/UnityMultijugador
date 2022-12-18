@@ -14,10 +14,10 @@ public class PlayerMovement : MonoBehaviour {
 	public float tempsRestant = 0.0f;
 
 	private float tempsRelantitzat = 0.0f;
+	private string habilitat = "Ralentitzar";
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool crouch = false;
-	string habilitat = "Ralentitzar";
 	
 	// Update is called once per frame
 	void Update () {

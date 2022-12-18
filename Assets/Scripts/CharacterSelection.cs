@@ -44,7 +44,10 @@ public class CharacterSelection : MonoBehaviour
     }
 
     public void Ready() {
-        if(!ready) ch.SendToServer("LLEST");
+        if(!ready) {
+            GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = "LLEST";
+            ch.SendToServer("LLEST");
+        }
         ready = true;
     }
 

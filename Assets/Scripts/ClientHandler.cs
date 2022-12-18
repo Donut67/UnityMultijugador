@@ -52,6 +52,7 @@ public class ClientHandler : MonoBehaviour
         }
         else if(message == "LLEST"){
             GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = message;
+            SceneManager.LoadScene("JocPrincipal", LoadSceneMode.Additive);
         }
         
         // Example: Print message on chat
