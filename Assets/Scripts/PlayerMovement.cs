@@ -46,6 +46,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
+	public void SetHabilitat(string nom) {
+		habilitat = nom;
+	}
+
 	public void OnLanding() {
 		animator.SetBool("IsJumping", false);
 	}

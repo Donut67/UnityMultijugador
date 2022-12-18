@@ -13,7 +13,7 @@ public class ControladorJugadors : MonoBehaviour {
     void Awake() {
         ch = GameObject.FindWithTag("Handler").GetComponent<ClientHandler>();
 
-        int quants = 0;
+        int quants = 0, pos = 0;
         foreach(int i in ch.seleccions) if(i != -1) quants ++;
 
         foreach(int i in ch.seleccions){
@@ -28,8 +28,13 @@ public class ControladorJugadors : MonoBehaviour {
                 else go = Instantiate(P4Prefab, gameObject.transform.position, Quaternion.identity);
                     
                 go.GetComponent<PlayerMovement>().player = i + 1;
+                if(pos == 0) go.GetComponent<PlayerMovement>().SetHabilitat("Doble salt");
+                if(pos == 1) go.GetComponent<PlayerMovement>().SetHabilitat("Dash");
+                if(pos == 2) go.GetComponent<PlayerMovement>().SetHabilitat("Ralentitzar");
+                if(pos == 3) go.GetComponent<PlayerMovement>().SetHabilitat("Potencia");
                 if(ch.jugador == i) go.GetComponent<PlayerMovement>().ControlPlayer();
             }
+            pos ++;
         }
     }
 
