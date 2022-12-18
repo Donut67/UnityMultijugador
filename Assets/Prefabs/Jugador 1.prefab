@@ -209,10 +209,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 2050268064024550776}
   animator: {fileID: 3487238289907868317}
-  RalentPrefab: {fileID: 9138938384803396339, guid: a1474367523eabb43b794bfa23068942, type: 3}
+  RalentPrefab: {fileID: 7843594803369382039, guid: a1474367523eabb43b794bfa23068942, type: 3}
   runSpeed: 80
   simulated: 1
   player: 0
+  cooldown: 3
+  tempsRestant: 0
 --- !u!95 &3487238289907868317
 Animator:
   serializedVersion: 4

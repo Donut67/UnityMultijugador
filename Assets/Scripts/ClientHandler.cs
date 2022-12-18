@@ -7,7 +7,8 @@ public class ClientHandler : MonoBehaviour
 {
     public bool test = false;
     private NetworkHelper networkHelper;
-    private int jugador = -1;
+    public int jugador = 1;
+    public int[] seleccions = {-1, 0, -1, -1};
     private void Start()
     {
         DontDestroyOnLoad(this);
@@ -44,6 +45,7 @@ public class ClientHandler : MonoBehaviour
             CharacterSelection cs = GameObject.FindWithTag("Selector").GetComponent<CharacterSelection>();
             for(int i = 0; i < 4; i++) {
                 int qui = Int32.Parse(resultat[1 + i]);
+                seleccions[i] = qui;
                 if(qui == -1) cs.DisSelectBox(i);
                 else cs.SelectBox(qui, i);
             }

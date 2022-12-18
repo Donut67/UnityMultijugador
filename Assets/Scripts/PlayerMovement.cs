@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour {
 	public Animator animator;
 	[SerializeField] public GameObject RalentPrefab;
 	public float runSpeed = 40f;
-	public bool simulated = false;
+	public bool simulated = true;
 	public int player;
-	public float cooldown = 3.0f;
+	public float cooldown = 10.0f;
 	public float tempsRestant = 0.0f;
 
 	private float tempsRelantitzat = 0.0f;
@@ -50,6 +50,10 @@ public class PlayerMovement : MonoBehaviour {
 		animator.SetBool("IsJumping", false);
 	}
 
+	public void ControlPlayer() {
+		simulated = false;
+	}
+
 	void FixedUpdate () {
 		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
 		jump = false;
@@ -61,6 +65,7 @@ public class PlayerMovement : MonoBehaviour {
 		// Es posa aquesta area a la capa de l'equip contrari
 		// go.layer = LayerMask.NameToLayer("Team1");
 		go.layer = LayerMask.NameToLayer("Team2");
+		Destroy(go, 1);
 		tempsRestant = cooldown;
 	}
 
