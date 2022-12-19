@@ -10,7 +10,7 @@ public class ControladorJugadors : MonoBehaviour {
     [SerializeField] private GameObject P3Prefab;
     [SerializeField] private GameObject P4Prefab;
 
-    void Awake() {
+    /*void Awake() {
         ch = GameObject.FindWithTag("Handler").GetComponent<ClientHandler>();
 
         int quants = 0, pos = 0;
@@ -36,7 +36,7 @@ public class ControladorJugadors : MonoBehaviour {
             }
             pos ++;
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
