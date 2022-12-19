@@ -11,11 +11,10 @@ public class PlayerMovement : MonoBehaviour {
 	public bool simulated = true;
 	public int player;
 	public float cooldown = 10.0f;
-	public float tempsRestant = 0.0f;
-
-	private float tempsRelantitzat = 0.0f;
-    private float tempsPotencia = 0.0f;
+	public FunctionTimer cooldownTimer = null;
+	public FunctionTimer habilitatTimer = null;
 	private string habilitat = "Potencia";
+	private bool potActivar = true;
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool crouch = false;
@@ -29,19 +28,15 @@ public class PlayerMovement : MonoBehaviour {
 				jump = true;
 				animator.SetBool("IsJumping", true);
 			}
-			if(Input.GetButtonDown("Ability") && tempsRestant == 0.0f) {
+
+			if(Input.GetButtonDown("Ability") && potActivar) {
 				if(habilitat == "Dash") {}
 				else if(habilitat == "Ralentitzar") {Ralentitzar();}
-				else if(habilitat == "Potencia") { Potencia(); }
+				else if(habilitat == "Potencia") {Potencia();}
 			}
-			if(tempsRestant > 0.0f) tempsRestant -= Time.deltaTime;
-			else tempsRestant = 0.0f;
-
-			if(tempsRelantitzat <= 0.0f && habilitat == "Ralentitzar") runSpeed = 40f;
-			else tempsRelantitzat -= Time.deltaTime;
-
-            if (tempsPotencia > 0.0f && habilitat == "Potencia") tempsPotencia -= Time.deltaTime;
-            else runSpeed = 40.0f;
+			
+			if(cooldownTimer != null) cooldownTimer.Update();
+			if(habilitatTimer != null) habilitatTimer.Update();
 		}
 		// else {
 		// 	horizontalMove = Input.GetAxisRaw("Horizontal2") * runSpeed;
@@ -74,19 +69,29 @@ public class PlayerMovement : MonoBehaviour {
 		// go.layer = LayerMask.NameToLayer("Team1");
 		go.layer = LayerMask.NameToLayer("Team2");
 		Destroy(go, 1);
-		tempsRestant = cooldown;
+		potActivar = false;
+		cooldownTimer = new FunctionTimer(AcabarCooldown, cooldown);
+	}
+
+	public void AcabarCooldown() {
+		potActivar = true;
+	}
+
+	public void VelocitatBase() {
+		runSpeed = 40.0f;
 	}
 
 	public void RalentitzarJugador(float temps) {
 		// Ralentitzar el jugador durant un temps
 		runSpeed = 10.0f;
-		tempsRelantitzat = temps;
+		habilitatTimer = new FunctionTimer(VelocitatBase, temps);
 	}
 
     public void Potencia(){
         runSpeed = 80.0f;
-        tempsPotencia = 1.2f;
-        tempsRestant = cooldown;
+		potActivar = false;
+		habilitatTimer = new FunctionTimer(VelocitatBase, 1.2f);
+		cooldownTimer = new FunctionTimer(AcabarCooldown, cooldown);
     }
 
 }

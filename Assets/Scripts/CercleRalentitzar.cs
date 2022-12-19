@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CercleRalentitzar : MonoBehaviour {
-    public float temps = 0.5f;
+    public float temps = 2.5f;
 
     void Update(){
         temps -= Time.deltaTime;
