@@ -56,6 +56,7 @@ public class ServerHandler : MonoBehaviour
     private void ReceiveMessage(string message, int from)
     {
         // Do things here
+        GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(message);
         if(message == "LLEST") {
             ready[from] = true;
             bool tots = true;
