@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour {
 	public Animator animator;
 	[SerializeField] public GameObject RalentPrefab;
 	public float runSpeed = 40f;
+	public int vida = 4;
 	public bool simulated = true;
 	public int player;
 	public float cooldown = 10.0f;
 	public FunctionTimer cooldownTimer = null;
 	public FunctionTimer habilitatTimer = null;
+	public FunctionTimer mortTimer = null;
 	private string habilitat = "Potencia";
 	private bool potActivar = true;
 	float horizontalMove = 0f;
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 			
 			if(cooldownTimer != null) cooldownTimer.Update();
 			if(habilitatTimer != null) habilitatTimer.Update();
+			if(mortTimer != null) mortTimer.Update();
 		}
 		// else {
 		// 	horizontalMove = Input.GetAxisRaw("Horizontal2") * runSpeed;
@@ -77,6 +80,10 @@ public class PlayerMovement : MonoBehaviour {
 		potActivar = true;
 	}
 
+	public void Reviure() {
+		vida = 4;
+	}
+
 	public void VelocitatBase() {
 		runSpeed = 40.0f;
 	}
@@ -93,5 +100,10 @@ public class PlayerMovement : MonoBehaviour {
 		habilitatTimer = new FunctionTimer(VelocitatBase, 1.2f);
 		cooldownTimer = new FunctionTimer(AcabarCooldown, cooldown);
     }
+
+	public void RebreMal() {
+		vida -= 1;
+		if(vida == 0) mortTimer = new FunctionTimer(Reviure, 2.0f);
+	}
 
 }

@@ -31,8 +31,8 @@ public class CharacterSelection : MonoBehaviour
     }
 
     public void SetCurrentSelection(int pos) {
-        ch.SendToServer("SELECT|" + pos);
-        GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = "SELECT|" + player + "|" + pos;
+        ch.SendToServer("SELECT," + pos);
+        GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = "SELECT," + player + "," + pos;
     }
 
     public void SelectBox(int i, int j) {
