@@ -40,11 +40,11 @@ public class ServerHandler : MonoBehaviour
     private void ClientConnected(int id)
     {
         ready.Insert(id, false);
-        SendToClient(id, "JUGADOR|" + id.ToString());
+        SendToClient(id, "JUGADOR," + id.ToString());
         GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("P" + id + " connected");
-        string send = "SELECT|";
+        string send = "SELECT,";
         for(int i = 0; i < 4; i++) {
-            send += seleccions[i].ToString() + "|";
+            send += seleccions[i].ToString() + ",";
         }
         SendToClient(id, send);
     }
@@ -69,7 +69,7 @@ public class ServerHandler : MonoBehaviour
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(from + ": LLEST");
             if(tots) SendToAll("LLEST");
         }else{
-            string[] resultat = message.Split("|");
+            string[] resultat = message.Split(",");
 
             if (resultat[0] == "SELECT") {
                 int qui  = from - 1;
@@ -90,7 +90,7 @@ public class ServerHandler : MonoBehaviour
 
                 string send = "SELECT";
                 for(int i = 0; i < 4; i++) {
-                    send += "|" + seleccions[i].ToString();
+                    send += "," + seleccions[i].ToString();
                 }
                 GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(send);
                 SendToAll(send);

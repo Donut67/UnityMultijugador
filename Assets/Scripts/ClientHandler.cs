@@ -35,7 +35,7 @@ public class ClientHandler : MonoBehaviour
     private void ReceiveMessage(string message)
     {
         // Do things here
-        string[] resultat = message.Split("|");
+        string[] resultat = message.Split(",");
 
         if(resultat[0] == "JUGADOR") {
             jugador = Int32.Parse(resultat[1]);
