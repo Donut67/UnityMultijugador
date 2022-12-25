@@ -39,7 +39,7 @@ public class ServerHandler : MonoBehaviour
 
     private void ClientConnected(int id)
     {
-        ready.Insert(id, false);
+        ready.Add(false);
         SendToClient(id, "JUGADOR," + id.ToString());
         GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("P" + id + " connected");
         string send = "SELECT,";
@@ -56,44 +56,46 @@ public class ServerHandler : MonoBehaviour
     private void ReceiveMessage(string message, int from)
     {
         // Do things here
-        GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(message);
-        if(message == "LLEST") {
-            ready[from] = true;
-            bool tots = true;
-            foreach(bool pReady in ready){
-                if(!pReady) {
-                    tots = false;
+        
+        string[] resultat = message.Split(',');
+        GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(resultat[0]);
+
+        if (resultat[0] == "SELECT") {
+            int qui  = from - 1;
+            int quin = Int32.Parse(resultat[1]);
+            int pos = -1;
+
+            for(int i = 0; i < 4; i++) {
+                if(seleccions[i] == qui) {
+                    pos = i;
                     break;
                 }
             }
+
+            if(seleccions[quin] == -1) {
+                if(pos != -1) seleccions[pos] = -1;
+                seleccions[quin] = qui;
+            }
+
+            string send = "SELECT";
+            for(int i = 0; i < 4; i++) {
+                send += "," + seleccions[i].ToString();
+            }
+            GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(send);
+            SendToAll(send);
+        }
+        else if(resultat[0] == "LLEST") {
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(from + ": LLEST");
-            if(tots) SendToAll("LLEST");
-        }else{
-            string[] resultat = message.Split(",");
-
-            if (resultat[0] == "SELECT") {
-                int qui  = from - 1;
-                int quin = Int32.Parse(resultat[1]);
-                int pos = -1;
-
-                for(int i = 0; i < 4; i++) {
-                    if(seleccions[i] == qui) {
-                        pos = i;
+            ready[from - 1] = true;
+            if(ready.Count >= 2) {
+                bool tots = true;
+                foreach(bool pReady in ready){
+                    if(!pReady) {
+                        tots = false;
                         break;
                     }
                 }
-
-                if(seleccions[quin] == -1) {
-                    if(pos != -1) seleccions[pos] = -1;
-                    seleccions[quin] = qui;
-                }
-
-                string send = "SELECT";
-                for(int i = 0; i < 4; i++) {
-                    send += "," + seleccions[i].ToString();
-                }
-                GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(send);
-                SendToAll(send);
+                if(tots) SendToAll("LLEST,0");
             }
         }
     }

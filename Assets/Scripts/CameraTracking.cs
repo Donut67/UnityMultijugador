@@ -7,10 +7,10 @@ public class CameraTracking : MonoBehaviour{
 
     // Start is called before the first frame update
     void Awake() {
-        GameObject[] gos = GameObject.FindGameObjectsWithTag("Jugador");
-        foreach(GameObject g in gos) {
-            playerList.Add(g.transform);
-        }
+        // GameObject[] gos = GameObject.FindGameObjectsWithTag("Jugador");
+        // foreach(GameObject g in gos) {
+        //     playerList.Add(g.transform);
+        // }
     }
 
     // Update is called once per frame
@@ -60,8 +60,15 @@ public class CameraTracking : MonoBehaviour{
         // GetComponent<Camera>().orthographicSize = maxDistance;
         gameObject.transform.position = Vector3.Lerp(
             gameObject.transform.position,
-            new Vector3(resultant.x /playerList.Count, resultant.y /playerList.Count, -(maxDistance / 4 + 5)),
+            new Vector3(
+                playerList.Count > 0 ? (resultant.x / playerList.Count) : resultant.x, 
+                playerList.Count > 0 ? (resultant.y / playerList.Count) : resultant.y, 
+                -(maxDistance / 4 + 5)),
             Time.deltaTime * 3
         );
+    }
+
+    public void AddPlayer(Transform t) {
+        playerList.Add(t);
     }
 }

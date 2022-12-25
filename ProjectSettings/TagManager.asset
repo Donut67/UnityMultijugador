@@ -8,6 +8,7 @@ TagManager:
   - Handler
   - Jugador
   - Selector
+  - ControladorJugadors
   layers:
   - Default
   - TransparentFX

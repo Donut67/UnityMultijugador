@@ -50,9 +50,13 @@ public class ClientHandler : MonoBehaviour
                 else cs.SelectBox(qui, i);
             }
         }
-        else if(message == "LLEST"){
+        else if(resultat[0] == "LLEST"){
             GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = message;
-            SceneManager.LoadScene("JocPrincipal", LoadSceneMode.Additive);
+            SceneManager.LoadScene("JocPrincipal", LoadSceneMode.Single);
+        }
+        else if(resultat[0] == "INFO") {
+            ControladorJugadors cj = GameObject.FindWithTag("ControladorJugadors").GetComponent<ControladorJugadors>();
+            cj.sendInfoToPlayer(Int32.Parse(resultat[1]), float.Parse(resultat[2]), resultat[3] == "true", resultat[4] == "true");
         }
         
         // Example: Print message on chat

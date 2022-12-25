@@ -20,32 +20,25 @@ public class PlayerMovement : MonoBehaviour {
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool crouch = false;
+    private ClientHandler ch = null;
 	
+	void Awake(){
+        ch = GameObject.FindWithTag("Handler").GetComponent<ClientHandler>();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if(!simulated) {
-			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-			animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-			if (Input.GetButtonDown("Jump")) {
-				jump = true;
-				animator.SetBool("IsJumping", true);
-			}
+			float hMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+			bool j = Input.GetButtonDown("Jump");
+			bool a = Input.GetButtonDown("Ability");
 
-			if(Input.GetButtonDown("Ability") && potActivar) {
-				if(habilitat == "Dash") {}
-				else if(habilitat == "Ralentitzar") {Ralentitzar();}
-				else if(habilitat == "Potencia") {Potencia();}
-			}
+			if(hMove != 0 || j || a) ch.SendToServer("INPUTS," + hMove.ToString("0.00") + "," + (j? "true" : "false") + "," + (a? "true" : "false"));
 			
 			if(cooldownTimer != null) cooldownTimer.Update();
 			if(habilitatTimer != null) habilitatTimer.Update();
 			if(mortTimer != null) mortTimer.Update();
 		}
-		// else {
-		// 	horizontalMove = Input.GetAxisRaw("Horizontal2") * runSpeed;
-		// 	if (Input.GetButtonDown("Vertical2")) jump = true;
-		// }
-
 	}
 
 	public void SetHabilitat(string nom) {
@@ -63,6 +56,20 @@ public class PlayerMovement : MonoBehaviour {
 	void FixedUpdate () {
 		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
 		jump = false;
+	}
+
+	public void RecieveServerInfo(float hMove, bool j, bool h){
+		horizontalMove = hMove;
+		jump = j;
+
+		if(h && potActivar) {
+			if(habilitat == "Dash") {}
+			else if(habilitat == "Ralentitzar") {Ralentitzar();}
+			else if(habilitat == "Potencia") {Potencia();}
+		}
+
+		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+		if(jump) animator.SetBool("IsJumping", true);
 	}
 
 	public void Ralentitzar() {

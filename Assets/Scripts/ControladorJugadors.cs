@@ -9,8 +9,11 @@ public class ControladorJugadors : MonoBehaviour {
     [SerializeField] private GameObject P2Prefab;
     [SerializeField] private GameObject P3Prefab;
     [SerializeField] private GameObject P4Prefab;
+    [SerializeField] private CameraTracking ct = null;
 
-    /*void Awake() {
+    private List<GameObject> llista = new List<GameObject>();
+
+    void Awake() {
         ch = GameObject.FindWithTag("Handler").GetComponent<ClientHandler>();
 
         int quants = 0, pos = 0;
@@ -33,14 +36,21 @@ public class ControladorJugadors : MonoBehaviour {
                 if(pos == 2) go.GetComponent<PlayerMovement>().SetHabilitat("Ralentitzar");
                 if(pos == 3) go.GetComponent<PlayerMovement>().SetHabilitat("Potencia");
                 if(ch.jugador == i) go.GetComponent<PlayerMovement>().ControlPlayer();
+
+                llista.Add(go);
+                ct.AddPlayer(go.transform);
             }
             pos ++;
         }
-    }*/
+    }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void sendInfoToPlayer(int iden, float hMove, bool j, bool h){
+        llista[iden].GetComponent<PlayerMovement>().RecieveServerInfo(hMove, j, h);
     }
 }
