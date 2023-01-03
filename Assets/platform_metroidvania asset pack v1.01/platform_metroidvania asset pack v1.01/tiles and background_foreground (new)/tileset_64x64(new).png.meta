@@ -213,7 +213,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -261,6 +261,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1484,12 +1508,11 @@ TextureImporter:
     nameFileIdTable:
       tileset_64x64(new)_2: -7650815258920397467
       tileset_64x64(new)_10: -8358559315318606274
-      tileset_64x64(new)_46: -7872794064197996941
+      tileset_64x64(new)_30: -4966309100401337069
       tileset_64x64(new)_21: 2165818557720951302
       tileset_64x64(new)_44: 377896056491299446
       tileset_64x64(new)_19: 993082470594250834
       tileset_64x64(new)_53: 2497129968784242521
-      tileset_64x64(new)_47: -2793502455542038030
       tileset_64x64(new)_45: 2979982883956599597
       tileset_64x64(new)_38: -2815017931696028487
       tileset_64x64(new)_3: -5654992287022618154
@@ -1508,8 +1531,8 @@ TextureImporter:
       tileset_64x64(new)_5: -6398875538944820339
       tileset_64x64(new)_51: 5644815385680775739
       tileset_64x64(new)_26: -6415140931593280564
-      tileset_64x64(new)_16: 356170324901269798
       tileset_64x64(new)_20: 1239844023982210758
+      tileset_64x64(new)_16: 356170324901269798
       tileset_64x64(new)_12: -1012195971992709223
       tileset_64x64(new)_37: -3891743741131782817
       tileset_64x64(new)_13: 4735021615920746354
@@ -1536,9 +1559,10 @@ TextureImporter:
       tileset_64x64(new)_7: 1385007944578423654
       tileset_64x64(new)_49: -2132827388082900946
       tileset_64x64(new)_11: -1138871135025990938
+      tileset_64x64(new)_47: -2793502455542038030
       tileset_64x64(new)_33: 6961220625794386753
       tileset_64x64(new)_8: -7656906371066510967
-      tileset_64x64(new)_30: -4966309100401337069
+      tileset_64x64(new)_46: -7872794064197996941
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

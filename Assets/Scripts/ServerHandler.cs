@@ -39,12 +39,12 @@ public class ServerHandler : MonoBehaviour
 
     private void ClientConnected(int id)
     {
-        ready.Insert(id, false);
-        SendToClient(id, "JUGADOR|" + id.ToString());
+        ready.Add(false);
+        SendToClient(id, "JUGADOR," + id.ToString());
         GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("P" + id + " connected");
-        string send = "SELECT|";
+        string send = "SELECT,";
         for(int i = 0; i < 4; i++) {
-            send += seleccions[i].ToString() + "|";
+            send += seleccions[i].ToString() + ",";
         }
         SendToClient(id, send);
     }
@@ -56,7 +56,9 @@ public class ServerHandler : MonoBehaviour
     private void ReceiveMessage(string message, int from)
     {
         // Do things here
-        string[] resultat = message.Split("|");
+        
+        string[] resultat = message.Split(',');
+        GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(resultat[0]);
 
         if (resultat[0] == "SELECT") {
             int qui  = from - 1;
@@ -77,20 +79,24 @@ public class ServerHandler : MonoBehaviour
 
             string send = "SELECT";
             for(int i = 0; i < 4; i++) {
-                send += "|" + seleccions[i].ToString();
+                send += "," + seleccions[i].ToString();
             }
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(send);
             SendToAll(send);
-        }else if(message == "LLEST") {
-            ready[from] = true;
-            bool tots = true;
-            foreach(bool pReady in ready){
-                if(!pReady) {
-                    tots = false;
-                    break;
+        }
+        else if(resultat[0] == "LLEST") {
+            GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(from + ": LLEST");
+            ready[from - 1] = true;
+            if(ready.Count >= 2) {
+                bool tots = true;
+                foreach(bool pReady in ready){
+                    if(!pReady) {
+                        tots = false;
+                        break;
+                    }
                 }
+                if(tots) SendToAll("LLEST,0");
             }
-            if(tots) SendToAll("LLEST");
         }
     }
 

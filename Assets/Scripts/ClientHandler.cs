@@ -7,7 +7,8 @@ public class ClientHandler : MonoBehaviour
 {
     public bool test = false;
     private NetworkHelper networkHelper;
-    private int jugador = -1;
+    public int jugador = 1;
+    public int[] seleccions = {-1, 0, -1, -1};
     private void Start()
     {
         DontDestroyOnLoad(this);
@@ -34,7 +35,7 @@ public class ClientHandler : MonoBehaviour
     private void ReceiveMessage(string message)
     {
         // Do things here
-        string[] resultat = message.Split("|");
+        string[] resultat = message.Split(",");
 
         if(resultat[0] == "JUGADOR") {
             jugador = Int32.Parse(resultat[1]);
@@ -44,12 +45,18 @@ public class ClientHandler : MonoBehaviour
             CharacterSelection cs = GameObject.FindWithTag("Selector").GetComponent<CharacterSelection>();
             for(int i = 0; i < 4; i++) {
                 int qui = Int32.Parse(resultat[1 + i]);
+                seleccions[i] = qui;
                 if(qui == -1) cs.DisSelectBox(i);
                 else cs.SelectBox(qui, i);
             }
         }
-        else if(message == "LLEST"){
+        else if(resultat[0] == "LLEST"){
             GameObject.FindWithTag("Jugador").GetComponent<TextMeshProUGUI>().text = message;
+            SceneManager.LoadScene("JocPrincipal", LoadSceneMode.Single);
+        }
+        else if(resultat[0] == "INFO") {
+            ControladorJugadors cj = GameObject.FindWithTag("ControladorJugadors").GetComponent<ControladorJugadors>();
+            cj.sendInfoToPlayer(Int32.Parse(resultat[1]), float.Parse(resultat[2]), resultat[3] == "true", resultat[4] == "true");
         }
         
         // Example: Print message on chat
