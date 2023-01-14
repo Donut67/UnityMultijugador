@@ -42143,7 +42143,7 @@ MonoBehaviour:
   P2Prefab: {fileID: 5888966129093698804, guid: d34171ce87f43284093f02bce0cf05af, type: 3}
   P3Prefab: {fileID: 5888966129093698804, guid: 66224e751a574ff4cae88bdeededece5, type: 3}
   P4Prefab: {fileID: 5888966129093698804, guid: bcbda301f963b97498b6722d1713076d, type: 3}
-  ct: {fileID: 0}
+  ct: {fileID: 502642324}
 --- !u!4 &1758867835
 Transform:
   m_ObjectHideFlags: 0

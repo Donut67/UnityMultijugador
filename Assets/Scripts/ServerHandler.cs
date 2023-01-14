@@ -97,6 +97,9 @@ public class ServerHandler : MonoBehaviour
                 }
                 if(tots) SendToAll("LLEST,0");
             }
+        }else if(resultat[0] == "INPUTS"){
+            GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("INFO," + from + "," + resultat[1] + "," + resultat[2] + "," + resultat[3]);
+            SendToAll("INFO," + from + "," + resultat[1] + "," + resultat[2] + "," + resultat[3]);
         }
     }
 

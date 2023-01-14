@@ -36,10 +36,11 @@ public class ControladorJugadors : MonoBehaviour {
                 if(pos == 1) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Dash");
                 if(pos == 2) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Ralentitzar");
                 if(pos == 3) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Potencia");
-                GameObject.FindWithTag("Chat").GetComponent<TextMeshProUGUI>().text += i + " ";
 
-                if(ch.jugador == i) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().ControlPlayer();
-
+                if(ch.jugador - 1 == i) {
+                    go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().ControlPlayer();
+                    GameObject.FindWithTag("Chat").GetComponent<TextMeshProUGUI>().text = i + " control";
+                }
 
                 llista.Add(go);
                 ct.AddPlayer(go.transform);
