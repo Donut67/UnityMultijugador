@@ -16,12 +16,10 @@ public class ControladorJugadors : MonoBehaviour {
 
     void Awake() {
         ch = GameObject.FindWithTag("Handler").GetComponent<ClientHandler>();
-        ct = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
 
         int quants = 0, pos = 0;
         foreach(int i in ch.seleccions) if(i != -1) quants ++;
 
-        GameObject.FindWithTag("Chat").GetComponent<TextMeshProUGUI>().text = "okay";
         foreach(int i in ch.seleccions){
             if(i != -1) {
                 GameObject go;
@@ -32,8 +30,9 @@ public class ControladorJugadors : MonoBehaviour {
                     else go = Instantiate(P3Prefab, gameObject.transform.position, Quaternion.identity);
                 }else if(i == 2) go = Instantiate(P2Prefab, gameObject.transform.position, Quaternion.identity);
                 else go = Instantiate(P4Prefab, gameObject.transform.position, Quaternion.identity);
+                GameObject.FindWithTag("Chat").GetComponent<TextMeshProUGUI>().text = "okay";
                     
-                go.GetComponent<PlayerMovement>().player = i + 1;
+                go.GetComponent<PlayerMovement>().SetPlayer(i + 1);
                 if(pos == 0) go.GetComponent<PlayerMovement>().SetHabilitat("Doble salt");
                 if(pos == 1) go.GetComponent<PlayerMovement>().SetHabilitat("Dash");
                 if(pos == 2) go.GetComponent<PlayerMovement>().SetHabilitat("Ralentitzar");
