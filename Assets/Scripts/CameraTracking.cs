@@ -70,5 +70,6 @@ public class CameraTracking : MonoBehaviour{
 
     public void AddPlayer(Transform t) {
         playerList.Add(t);
+        
     }
 }

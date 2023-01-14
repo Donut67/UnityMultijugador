@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ControladorJugadors : MonoBehaviour {
     
@@ -9,7 +10,7 @@ public class ControladorJugadors : MonoBehaviour {
     [SerializeField] private GameObject P2Prefab;
     [SerializeField] private GameObject P3Prefab;
     [SerializeField] private GameObject P4Prefab;
-    [SerializeField] private CameraTracking ct = null;
+    [SerializeField] private MultiTargetCamera ct = null;
 
     private List<GameObject> llista = new List<GameObject>();
 
@@ -36,7 +37,9 @@ public class ControladorJugadors : MonoBehaviour {
                 if(pos == 1) go.GetComponent<PlayerMovement>().SetHabilitat("Dash");
                 if(pos == 2) go.GetComponent<PlayerMovement>().SetHabilitat("Ralentitzar");
                 if(pos == 3) go.GetComponent<PlayerMovement>().SetHabilitat("Potencia");
+
                 if(ch.jugador == i) go.GetComponent<PlayerMovement>().ControlPlayer();
+
 
                 llista.Add(go);
                 ct.AddPlayer(go.transform);
