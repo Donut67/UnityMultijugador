@@ -29138,15 +29138,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 502642319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 622a1402e4a5ecb41ad3a87c9f96c0d6, type: 3}
+  m_Script: {fileID: 11500000, guid: bfaf98ac8fd36a041b24b98e63dd3013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets: []
-  offset: {x: 0, y: 0, z: 0}
-  smoothTime: 0.5
-  minZoom: 40
-  maxZoom: 10
-  zoomLimiter: 50
+  playerList: []
 --- !u!114 &548410920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42148,7 +42143,7 @@ MonoBehaviour:
   P2Prefab: {fileID: 5888966129093698804, guid: d34171ce87f43284093f02bce0cf05af, type: 3}
   P3Prefab: {fileID: 5888966129093698804, guid: 66224e751a574ff4cae88bdeededece5, type: 3}
   P4Prefab: {fileID: 5888966129093698804, guid: bcbda301f963b97498b6722d1713076d, type: 3}
-  ct: {fileID: 502642324}
+  ct: {fileID: 0}
 --- !u!4 &1758867835
 Transform:
   m_ObjectHideFlags: 0

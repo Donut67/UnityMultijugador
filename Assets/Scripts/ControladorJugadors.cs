@@ -10,7 +10,7 @@ public class ControladorJugadors : MonoBehaviour {
     [SerializeField] private GameObject P2Prefab;
     [SerializeField] private GameObject P3Prefab;
     [SerializeField] private GameObject P4Prefab;
-    [SerializeField] private MultiTargetCamera ct = null;
+    [SerializeField] private CameraTracking ct = null;
 
     private List<GameObject> llista = new List<GameObject>();
 
@@ -30,15 +30,15 @@ public class ControladorJugadors : MonoBehaviour {
                     else go = Instantiate(P3Prefab, gameObject.transform.position, Quaternion.identity);
                 }else if(i == 2) go = Instantiate(P2Prefab, gameObject.transform.position, Quaternion.identity);
                 else go = Instantiate(P4Prefab, gameObject.transform.position, Quaternion.identity);
-                GameObject.FindWithTag("Chat").GetComponent<TextMeshProUGUI>().text = "okay";
                     
-                go.GetComponent<PlayerMovement>().SetPlayer(i + 1);
-                if(pos == 0) go.GetComponent<PlayerMovement>().SetHabilitat("Doble salt");
-                if(pos == 1) go.GetComponent<PlayerMovement>().SetHabilitat("Dash");
-                if(pos == 2) go.GetComponent<PlayerMovement>().SetHabilitat("Ralentitzar");
-                if(pos == 3) go.GetComponent<PlayerMovement>().SetHabilitat("Potencia");
+                go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetPlayer(i + 1);
+                if(pos == 0) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Doble salt");
+                if(pos == 1) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Dash");
+                if(pos == 2) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Ralentitzar");
+                if(pos == 3) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Potencia");
+                GameObject.FindWithTag("Chat").GetComponent<TextMeshProUGUI>().text += i + " ";
 
-                if(ch.jugador == i) go.GetComponent<PlayerMovement>().ControlPlayer();
+                if(ch.jugador == i) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().ControlPlayer();
 
 
                 llista.Add(go);
@@ -55,6 +55,6 @@ public class ControladorJugadors : MonoBehaviour {
     }
 
     public void sendInfoToPlayer(int iden, float hMove, bool j, bool h){
-        llista[iden].GetComponent<PlayerMovement>().RecieveServerInfo(hMove, j, h);
+        llista[iden].transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().RecieveServerInfo(hMove, j, h);
     }
 }
