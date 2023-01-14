@@ -8,7 +8,7 @@ public class ClientHandler : MonoBehaviour
     public bool test = false;
     private NetworkHelper networkHelper;
     public int jugador = 1;
-    public int[] seleccions = {-1, 0, -1, -1};
+    public int[] seleccions = {-1, -1, -1, -1};
     private void Start()
     {
         DontDestroyOnLoad(this);
