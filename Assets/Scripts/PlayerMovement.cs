@@ -41,11 +41,6 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	public void SetPlayer(int id) {
-		player = id;
-		transform.parent.gameObject.GetComponent<PlayerTag>().SetPlayerId(player);
-	}
-
 	public void SetHabilitat(string nom) {
 		habilitat = nom;
 	}
@@ -71,7 +66,6 @@ public class PlayerMovement : MonoBehaviour {
 			if(habilitat == "Dash") {}
 			else if(habilitat == "Ralentitzar") {Ralentitzar();}
 			else if(habilitat == "Potencia") {Potencia();}
-			else if(habilitat == "Doble salt") {}
 		}
 
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
