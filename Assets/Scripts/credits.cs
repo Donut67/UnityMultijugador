@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class credits : MonoBehaviour
+public class Credits : MonoBehaviour
 {
     public void Quit()
     {

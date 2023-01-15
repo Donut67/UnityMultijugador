@@ -59,8 +59,9 @@ public class ClientHandler : MonoBehaviour
             cj.sendInfoToPlayer(Int32.Parse(resultat[1]) - 1, float.Parse(resultat[2]), resultat[3] == "true", resultat[4] == "true");
         }
         else if(resultat[0] == "FINISH"){
-            int equipGuanyador = Int32.Parse(resultat[1]);
-            // Que fer quan s'acaba la partida
+            GameObject.FindWithTag("Show").active = true;
+            GameObject.FindWithTag("Acabar").GetComponent<TextMeshProUGUI>().text = "Ha guanyat l'equip: " + resultat[1];
+            Time.timeScale = 0;
         }
         
         // Example: Print message on chat

@@ -10,6 +10,8 @@ TagManager:
   - Selector
   - ControladorJugadors
   - Ralentitzar
+  - Acabar
+  - Show
   layers:
   - Default
   - TransparentFX
