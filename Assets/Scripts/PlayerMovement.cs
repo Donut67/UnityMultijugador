@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour {
 	bool jump = false;
 	bool crouch = false;
     private ClientHandler ch = null;
+
+	float hMovePrevi = 0;
+	bool jPrevi = false;
+	bool aPrevi = false;
 	
 	void Awake(){
         ch = GameObject.FindWithTag("Handler").GetComponent<ClientHandler>();
@@ -33,11 +37,15 @@ public class PlayerMovement : MonoBehaviour {
 			bool j = Input.GetButtonDown("Jump");
 			bool a = Input.GetButtonDown("Ability");
 
-			if(hMove != 0 || j || a) ch.SendToServer("INPUTS," + hMove.ToString("0.00") + "," + (j? "true" : "false") + "," + (a? "true" : "false"));
+			if(hMove != hMovePrevi || j != jPrevi || a != aPrevi) ch.SendToServer("INPUTS|" + hMove.ToString("0.00") + "|" + (j? "true" : "false") + "|" + (a? "true" : "false"));
 			
 			if(cooldownTimer != null) cooldownTimer.Update();
 			if(habilitatTimer != null) habilitatTimer.Update();
 			if(mortTimer != null) mortTimer.Update();
+
+			hMovePrevi = hMove;
+			jPrevi = j;
+			aPrevi = a;
 		}
 	}
 

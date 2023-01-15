@@ -9,6 +9,7 @@ public class ServerHandler : MonoBehaviour
     private NetworkHelper networkHelper;
     private int[] seleccions = {-1, -1, -1, -1};
     private List<bool> ready = new List<bool>();
+    private char divider = '|';
 
     private void Start()
     {
@@ -40,11 +41,11 @@ public class ServerHandler : MonoBehaviour
     private void ClientConnected(int id)
     {
         ready.Add(false);
-        SendToClient(id, "JUGADOR," + id.ToString());
+        SendToClient(id, "JUGADOR" + divider + id.ToString());
         GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("P" + id + " connected");
-        string send = "SELECT,";
+        string send = "SELECT" + divider;
         for(int i = 0; i < 4; i++) {
-            send += seleccions[i].ToString() + ",";
+            send += seleccions[i].ToString() + divider;
         }
         SendToClient(id, send);
     }
@@ -57,8 +58,7 @@ public class ServerHandler : MonoBehaviour
     {
         // Do things here
         
-        string[] resultat = message.Split(',');
-        GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(resultat[0]);
+        string[] resultat = message.Split(divider);
 
         if (resultat[0] == "SELECT") {
             int qui  = from - 1;
@@ -79,7 +79,7 @@ public class ServerHandler : MonoBehaviour
 
             string send = "SELECT";
             for(int i = 0; i < 4; i++) {
-                send += "," + seleccions[i].ToString();
+                send += divider + seleccions[i].ToString();
             }
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(send);
             SendToAll(send);
@@ -95,11 +95,12 @@ public class ServerHandler : MonoBehaviour
                         break;
                     }
                 }
-                if(tots) SendToAll("LLEST,0");
+                if(tots) SendToAll("LLEST" + divider + "0");
             }
         }else if(resultat[0] == "INPUTS"){
-            GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("INFO," + from + "," + resultat[1] + "," + resultat[2] + "," + resultat[3]);
-            SendToAll("INFO," + from + "," + resultat[1] + "," + resultat[2] + "," + resultat[3]);
+            GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(message);
+            GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("INFO," + from + divider + resultat[1] + divider + resultat[2] + divider + resultat[3]);
+            SendToAll("INFO" + divider + (from - 1) + divider + resultat[1] + divider + resultat[2] + divider + resultat[3]);
         }
     }
 

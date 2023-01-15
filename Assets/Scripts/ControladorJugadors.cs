@@ -10,7 +10,7 @@ public class ControladorJugadors : MonoBehaviour {
     [SerializeField] private GameObject P2Prefab;
     [SerializeField] private GameObject P3Prefab;
     [SerializeField] private GameObject P4Prefab;
-    [SerializeField] private CameraTracking ct = null;
+    [SerializeField] private MultiTargetCamera ct = null;
 
     private List<GameObject> llista = new List<GameObject>();
 
@@ -43,7 +43,7 @@ public class ControladorJugadors : MonoBehaviour {
                 }
 
                 llista.Add(go);
-                ct.AddPlayer(go.transform);
+                // ct.AddPlayer(go.transform);
             }
             pos ++;
         }
