@@ -56,7 +56,7 @@ public class ClientHandler : MonoBehaviour
         }
         else if(resultat[0] == "INFO") {
             ControladorJugadors cj = GameObject.FindWithTag("ControladorJugadors").GetComponent<ControladorJugadors>();
-            cj.sendInfoToPlayer(Int32.Parse(resultat[1]), float.Parse(resultat[2]), resultat[3] == "true", resultat[4] == "true");
+            cj.sendInfoToPlayer(Int32.Parse(resultat[1]) - 1, float.Parse(resultat[2]), resultat[3] == "true", resultat[4] == "true");
         }
         
         // Example: Print message on chat

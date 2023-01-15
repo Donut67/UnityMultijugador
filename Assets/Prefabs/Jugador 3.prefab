@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d849b2873a794cb4896f3cb65f9ed959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 1000
+  m_JumpForce: 1500
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -209,9 +209,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 2050268064024550776}
   animator: {fileID: 3487238289907868317}
+  RalentPrefab: {fileID: 0}
   runSpeed: 80
+  vida: 4
   simulated: 1
   player: 0
+  cooldown: 10
 --- !u!95 &3487238289907868317
 Animator:
   serializedVersion: 4

@@ -12,7 +12,7 @@ public class CercleRalentitzar : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D col) {
         if(col.gameObject.tag == "Player") {
-            col.gameObject.GetComponent<PlayerMovement>().RalentitzarJugador(temps);
+            col.gameObject.GetComponent<PlayerMovement>().RalentitzarJugador(2.5f);
         }
     }
 

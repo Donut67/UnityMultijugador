@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -9,7 +10,7 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] public GameObject RalentPrefab;
 	public float runSpeed = 40f;
 	public int vida = 4;
-	public bool simulated = true;
+	public bool control = false;
 	public int player;
 	public float cooldown = 10.0f;
 	public FunctionTimer cooldownTimer = null;
@@ -25,20 +26,20 @@ public class PlayerMovement : MonoBehaviour {
 	float hMovePrevi = 0;
 	bool jPrevi = false;
 	bool aPrevi = false;
-	
+
 	void Awake(){
         ch = GameObject.FindWithTag("Handler").GetComponent<ClientHandler>();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if(!simulated) {
+		if(control) {
 			float hMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 			bool j = Input.GetButtonDown("Jump");
 			bool a = Input.GetButtonDown("Ability");
 
-			if(hMove != hMovePrevi || j != jPrevi || a != aPrevi) ch.SendToServer("INPUTS|" + hMove.ToString("0.00") + "|" + (j? "true" : "false") + "|" + (a? "true" : "false"));
-			
+			if(hMove != hMovePrevi || j || a != aPrevi) ch.SendToServer("INPUTS|" + hMove.ToString("0.00") + "|" + (j? "true" : "false") + "|" + (a? "true" : "false"));
+
 			if(cooldownTimer != null) cooldownTimer.Update();
 			if(habilitatTimer != null) habilitatTimer.Update();
 			if(mortTimer != null) mortTimer.Update();
@@ -63,7 +64,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void ControlPlayer() {
-		simulated = false;
+		control = true;
 	}
 
 	void FixedUpdate () {
@@ -92,9 +93,9 @@ public class PlayerMovement : MonoBehaviour {
 		// Es posa aquesta area a la capa de l'equip contrari
 		// go.layer = LayerMask.NameToLayer("Team1");
 		go.layer = LayerMask.NameToLayer("Team2");
-		Destroy(go, 1);
 		potActivar = false;
 		cooldownTimer = new FunctionTimer(AcabarCooldown, cooldown);
+		// Destroy(go, 1);
 	}
 
 	public void AcabarCooldown() {
@@ -111,8 +112,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void RalentitzarJugador(float temps) {
 		// Ralentitzar el jugador durant un temps
-		runSpeed = 10.0f;
+		runSpeed = 20.0f;
 		habilitatTimer = new FunctionTimer(VelocitatBase, temps);
+		GameObject.FindWithTag("Chat").GetComponent<TextMeshProUGUI>().text = "Ralentitzat";
 	}
 
     public void Potencia(){

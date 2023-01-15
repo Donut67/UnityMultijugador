@@ -100,7 +100,7 @@ public class ServerHandler : MonoBehaviour
         }else if(resultat[0] == "INPUTS"){
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(message);
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("INFO," + from + divider + resultat[1] + divider + resultat[2] + divider + resultat[3]);
-            SendToAll("INFO" + divider + (from - 1) + divider + resultat[1] + divider + resultat[2] + divider + resultat[3]);
+            SendToAll("INFO" + divider + from + divider + resultat[1] + divider + resultat[2] + divider + resultat[3]);
         }
     }
 
