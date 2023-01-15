@@ -12,6 +12,7 @@ TagManager:
   - Ralentitzar
   - Acabar
   - Show
+  - AreaAtac
   layers:
   - Default
   - TransparentFX

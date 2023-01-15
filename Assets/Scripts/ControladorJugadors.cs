@@ -57,7 +57,11 @@ public class ControladorJugadors : MonoBehaviour {
         
     }
 
-    public void sendInfoToPlayer(int iden, float hMove, bool j, bool h){
-        llista[iden].transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().RecieveServerInfo(hMove, j, h);
+    public void sendInfoToPlayer(int iden, float hMove, bool j, bool h, bool q){
+        llista[iden].transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().RecieveServerInfo(hMove, j, h, q);
+    }
+
+    public void sendVidaToPlayer(int iden, int v){
+        llista[iden].transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().RecieveServerVida(v);
     }
 }

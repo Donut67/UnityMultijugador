@@ -208,12 +208,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2050268064024550776}
-  animator: {fileID: 0}
-  RalentPrefab: {fileID: 0}
+  animator: {fileID: 4065755126064997173}
+  RalentPrefab: {fileID: 7843594803369382039, guid: a1474367523eabb43b794bfa23068942, type: 3}
+  AtacPrefab: {fileID: 1528448535429487314, guid: 8399d34264d889f47ac19b3ca781c93b, type: 3}
   runSpeed: 80
   vida: 4
-  simulated: 1
+  control: 0
   player: 0
+  team: 0
   cooldown: 10
 --- !u!95 &4065755126064997173
 Animator:

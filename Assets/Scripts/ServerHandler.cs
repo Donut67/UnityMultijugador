@@ -98,9 +98,10 @@ public class ServerHandler : MonoBehaviour
                 if(tots) SendToAll("LLEST" + divider + "0");
             }
         }else if(resultat[0] == "INPUTS"){
-            GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(message);
-            GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("INFO," + from + divider + resultat[1] + divider + resultat[2] + divider + resultat[3]);
-            SendToAll("INFO" + divider + from + divider + resultat[1] + divider + resultat[2] + divider + resultat[3]);
+            // GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(message);
+            SendToAll("INFO" + divider + from + divider + resultat[1] + divider + resultat[2] + divider + resultat[3] + divider + resultat[4]);
+        }else if(resultat[0] == "VIDA") {
+            SendToAll("VIDA" + divider + from + divider + resultat[1]);
         }else if(resultat[0] == "FINISH") {
             SendToAll(message);
         }

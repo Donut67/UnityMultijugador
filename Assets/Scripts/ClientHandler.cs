@@ -56,10 +56,15 @@ public class ClientHandler : MonoBehaviour
         }
         else if(resultat[0] == "INFO") {
             ControladorJugadors cj = GameObject.FindWithTag("ControladorJugadors").GetComponent<ControladorJugadors>();
-            cj.sendInfoToPlayer(Int32.Parse(resultat[1]) - 1, float.Parse(resultat[2]), resultat[3] == "true", resultat[4] == "true");
+            cj.sendInfoToPlayer(Int32.Parse(resultat[1]) - 1, float.Parse(resultat[2]), resultat[3] == "true", resultat[4] == "true", resultat[5] == "true");
+        }
+        else if(resultat[0] == "VIDA") {
+            ControladorJugadors cj = GameObject.FindWithTag("ControladorJugadors").GetComponent<ControladorJugadors>();
+            cj.sendVidaToPlayer(Int32.Parse(resultat[1]) - 1, Int32.Parse(resultat[2]));
         }
         else if(resultat[0] == "FINISH"){
             GameObject.FindWithTag("Show").active = true;
+            GameObject.FindWithTag("Chat").GetComponent<TextMeshProUGUI>().text = "arribat";
             GameObject.FindWithTag("Acabar").GetComponent<TextMeshProUGUI>().text = "Ha guanyat l'equip: " + resultat[1];
             Time.timeScale = 0;
         }
