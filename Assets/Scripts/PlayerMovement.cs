@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void OnLanding() {
 		animator.SetBool("IsJumping", false);
+		if(habilitat == "Doble salt") potActivar = true;
 	}
 
 	public void ControlPlayer() {
@@ -80,13 +81,13 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void RecieveServerInfo(float hMove, bool j, bool h){
 		horizontalMove = hMove;
-		jump = j;
+		jump = j || habilitat == "Doble salt" && h && potActivar;
 
 		if(h && potActivar) {
 			if(habilitat == "Dash") {Dash();}
 			else if(habilitat == "Ralentitzar") {Ralentitzar();}
 			else if(habilitat == "Potencia") {Potencia();}
-			else if(habilitat == "Doble salt") {}
+			else if(habilitat == "Doble salt") {Salt();}
 		}
 
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -143,6 +144,11 @@ public class PlayerMovement : MonoBehaviour {
 		GetComponent<Rigidbody2D>().gravityScale = 0.0f;
 		habilitatTimer = new FunctionTimer(GravityBase, 0.05f);
 		cooldownTimer = new FunctionTimer(AcabarCooldown, cooldown);
+	}
+
+	public void Salt() {
+		potActivar = false;
+		jump = true;
 	}
 
 	public void RebreMal() {
