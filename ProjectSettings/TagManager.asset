@@ -9,6 +9,7 @@ TagManager:
   - Jugador
   - Selector
   - ControladorJugadors
+  - Ralentitzar
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - Team1
   - Team2
   - Ground
-  - 
-  - 
+  - Slow1
+  - Slow2
   - 
   - 
   - 

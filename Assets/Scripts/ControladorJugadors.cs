@@ -32,6 +32,8 @@ public class ControladorJugadors : MonoBehaviour {
                 else go = Instantiate(P4Prefab, gameObject.transform.position, Quaternion.identity);
                     
                 go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetPlayer(i + 1);
+                go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetTeam(i == 0 || i == 1 && quants > 2? 1 : 2);
+
                 if(pos == 0) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Doble salt");
                 if(pos == 1) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Dash");
                 if(pos == 2) go.transform.GetChild(0).gameObject.GetComponent<PlayerMovement>().SetHabilitat("Ralentitzar");
