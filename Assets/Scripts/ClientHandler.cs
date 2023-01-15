@@ -58,6 +58,9 @@ public class ClientHandler : MonoBehaviour
             ControladorJugadors cj = GameObject.FindWithTag("ControladorJugadors").GetComponent<ControladorJugadors>();
             cj.sendInfoToPlayer(Int32.Parse(resultat[1]) - 1, float.Parse(resultat[2]), resultat[3] == "true", resultat[4] == "true");
         }
+        else if(resultat[0] == "FINISH"){
+            // Que fer quan s'acaba la partida
+        }
         
         // Example: Print message on chat
     }

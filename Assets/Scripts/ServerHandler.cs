@@ -101,6 +101,8 @@ public class ServerHandler : MonoBehaviour
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput(message);
             GameObject.FindWithTag("Chat").GetComponent<ChatController>().AddChatToChatOutput("INFO," + from + divider + resultat[1] + divider + resultat[2] + divider + resultat[3]);
             SendToAll("INFO" + divider + from + divider + resultat[1] + divider + resultat[2] + divider + resultat[3]);
+        }else if(resultat[0] == "FINISH") {
+            SendToAll(message);
         }
     }
 
